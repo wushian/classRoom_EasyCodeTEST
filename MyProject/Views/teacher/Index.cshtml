@@ -1,0 +1,172 @@
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<MyProject.Models.teacher>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>teacher</h2>
+
+@using (Html.BeginForm("Index", "teacher", FormMethod.Get))
+{
+    <table class="table">
+        <tr>
+            <td align="left">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="center">
+                @Html.DropDownList("SearchField", (IEnumerable<SelectListItem>)ViewData["SearchFields"], new {style = "width:150px;height:33px"})
+                @Html.DropDownList("SearchCondition", (IEnumerable<SelectListItem>)ViewData["SearchConditions"], new { style = "width:150px;height:33px" })
+                @Html.TextBox("SearchText", ViewData["SearchText"] as String, new { style = "width:100px;height:33px" })
+                <input type="submit" value="Search" name="command" class="btn btn-default" />
+                <input type="submit" value="Show All" name="command" class="btn btn-default" /> 
+            </td>
+            <td>&nbsp;</td>
+            <td align="right">&nbsp;</td>
+        </tr>
+        <tr>
+            <td align="left">
+                @Html.DropDownList("Export", (IEnumerable<SelectListItem>)ViewData["Exports"], new { style = "width:65px;height:33px" })
+                <input type="submit" value="Export" name="command" class="btn btn-default" />
+            </td>
+            <td>&nbsp;</td>
+            <td align="left">                
+                <input type="submit" value="新增" name="command" class="btn btn-default" />
+            </td>
+            <td align="left">
+               <button class="btn btn-primary" id="ButtonExport" name="ButtonExport">
+                匯出資料
+              </button>
+            </td>
+            <td>&nbsp;</td>
+            <td align="right">
+                @Html.DropDownList("PageSize", (IEnumerable<SelectListItem>)ViewData["PageSizes"], new { style = "width:50px;height:33px" })
+                <input type="submit" value="Page Size" name="command" class="btn btn-default" />
+            </td>
+        </tr>
+    </table>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("姓名", "Index", new { sortOrder = ViewData["nameSortParm"], SearchText = ViewData["SearchText"] })
+        </th>
+        <th>
+            @Html.ActionLink("性別", "Index", new { sortOrder = ViewData["genderSortParm"], SearchText = ViewData["SearchText"] })
+        </th>
+        <th>
+            @Html.ActionLink("建立日期", "Index", new { sortOrder = ViewData["createDateSortParm"], SearchText = ViewData["SearchText"] })
+        </th>
+        <th>
+            @Html.ActionLink("生日", "Index", new { sortOrder = ViewData["birthDaySortParm"], SearchText = ViewData["SearchText"] })
+        </th>
+        <th>
+            @Html.ActionLink("地址", "Index", new { sortOrder = ViewData["addressSortParm"], SearchText = ViewData["SearchText"] })
+        </th>
+        <th>
+            @Html.ActionLink("公司地址", "Index", new { sortOrder = ViewData["officeAddressSortParm"], SearchText = ViewData["SearchText"] })
+        </th>
+        <th>
+            @Html.ActionLink("電話", "Index", new { sortOrder = ViewData["telPhoneSortParm"], SearchText = ViewData["SearchText"] })
+        </th>
+        <th>
+            @Html.ActionLink("手機", "Index", new { sortOrder = ViewData["cellPhoneSortParm"], SearchText = ViewData["SearchText"] })
+        </th>
+        <th>
+            @Html.ActionLink("職稱", "Index", new { sortOrder = ViewData["jobSortParm"], SearchText = ViewData["SearchText"] })
+        </th>
+        <th>
+            @Html.ActionLink("專長", "Index", new { sortOrder = ViewData["abilitySortParm"], SearchText = ViewData["SearchText"] })
+        </th>
+        <th>
+            @Html.ActionLink("學歷", "Index", new { sortOrder = ViewData["educationalSortParm"], SearchText = ViewData["SearchText"] })
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.createDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.birthDay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.officeAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cellPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.job)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ability)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.educational)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {
+ 						id = item.id 
+ 						}) |
+            @Html.ActionLink("Details", "Details", new {
+ 						id = item.id 
+ 						}) |
+            @Html.ActionLink("Delete", "Delete", new {
+ 						id = item.id 
+ 						})
+        </td>
+    </tr>
+}
+
+</table>
+
+<table class="table">
+    <tr>
+        <td align="center">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewData["CurrentSort"], SearchText = ViewData["SearchText"] }))
+        </td>
+    </tr>
+</table>
+
+
+
+@Html.Partial("_ExportDataDialog")
+
+@section scripts
+{
+@* for Export file *@
+    <script src="~/Scripts/Excel-Export.js"></script>
+    <script src="~/Scripts/bootbox.js"></script>
+    <script src="~/Scripts/jquery.form.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var actionUrls = {
+            Export: '@Url.Action("Export", "teacher")',
+            HasData: '@Url.Action("HasData", "teacher")'
+        };
+        project.ZipCode.Initialize(actionUrls);
+    });
+</script>
+
+
+}
+
+ 

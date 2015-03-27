@@ -1,0 +1,75 @@
+@model MyProject.Models.student
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>student</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        <dt>
+            @Html.DisplayNameFor(model => model.birthDay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.birthDay)
+        <dt>
+            @Html.DisplayNameFor(model => model.gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gender)
+        <dt>
+            @Html.DisplayNameFor(model => model.createDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createDate)
+        <dt>
+            @Html.DisplayNameFor(model => model.education)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.education)
+        <dt>
+            @Html.DisplayNameFor(model => model.address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        <dt>
+            @Html.DisplayNameFor(model => model.company)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.company)
+        <dt>
+            @Html.DisplayNameFor(model => model.telno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telno)
+        <dt>
+            @Html.DisplayNameFor(model => model.cellno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cellno)
+    </dl>
+</div>
+<p>
+            @Html.ActionLink("Edit", "Edit", new {
+ 						id = Model.id 
+ 						}) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+ 

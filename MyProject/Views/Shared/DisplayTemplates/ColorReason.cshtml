@@ -1,0 +1,30 @@
+ï»¿@using System.Reflection.Emit
+@model string
+@if (!string.IsNullOrEmpty(Model))
+{
+    String cls = null;
+
+    if (Model == "?°å?" )
+    {
+        cls = "label label-info";
+    }
+    else if (Model == "?ªé™¤" )
+    {
+        cls = "label label-danger";
+    }
+    else if (Model == "ä¿®æ”¹" )
+    {
+        cls = "label label-success";
+    }
+    else
+    {
+        cls = "label label-warning";
+    }
+
+
+    <span class="@cls">@Model</span>
+}
+
+
+
+ 

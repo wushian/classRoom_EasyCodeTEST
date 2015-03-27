@@ -1,0 +1,154 @@
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<MyProject.Models.calendar_detail>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>calendar_detail</h2>
+
+@using (Html.BeginForm("Index", "calendar_detail", FormMethod.Get))
+{
+    <table class="table">
+        <tr>
+            <td align="left">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="center">
+                @Html.DropDownList("SearchField", (IEnumerable<SelectListItem>)ViewData["SearchFields"], new {style = "width:150px;height:33px"})
+                @Html.DropDownList("SearchCondition", (IEnumerable<SelectListItem>)ViewData["SearchConditions"], new { style = "width:150px;height:33px" })
+                @Html.TextBox("SearchText", ViewData["SearchText"] as String, new { style = "width:100px;height:33px" })
+                <input type="submit" value="Search" name="command" class="btn btn-default" />
+                <input type="submit" value="Show All" name="command" class="btn btn-default" /> 
+            </td>
+            <td>&nbsp;</td>
+            <td align="right">&nbsp;</td>
+        </tr>
+        <tr>
+            <td align="left">
+                @Html.DropDownList("Export", (IEnumerable<SelectListItem>)ViewData["Exports"], new { style = "width:65px;height:33px" })
+                <input type="submit" value="Export" name="command" class="btn btn-default" />
+            </td>
+            <td>&nbsp;</td>
+            <td align="left">                
+                <input type="submit" value="新增" name="command" class="btn btn-default" />
+            </td>
+            <td align="left">
+               <button class="btn btn-primary" id="ButtonExport" name="ButtonExport">
+                匯出資料
+              </button>
+            </td>
+            <td>&nbsp;</td>
+            <td align="right">
+                @Html.DropDownList("PageSize", (IEnumerable<SelectListItem>)ViewData["PageSizes"], new { style = "width:50px;height:33px" })
+                <input type="submit" value="Page Size" name="command" class="btn btn-default" />
+            </td>
+        </tr>
+    </table>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("主旨", "Index", new { sortOrder = ViewData["subjectSortParm"], SearchText = ViewData["SearchText"] })
+        </th>
+        <th>
+            @Html.ActionLink("開始時間", "Index", new { sortOrder = ViewData["startDateTimeSortParm"], SearchText = ViewData["SearchText"] })
+        </th>
+        <th>
+            @Html.ActionLink("結束時間", "Index", new { sortOrder = ViewData["endDateTimeSortParm"], SearchText = ViewData["SearchText"] })
+        </th>
+        <th>
+            @Html.ActionLink("學員費用", "Index", new { sortOrder = ViewData["feeStaffSortParm"], SearchText = ViewData["SearchText"] })
+        </th>
+        <th>
+            @Html.ActionLink("非學員費用", "Index", new { sortOrder = ViewData["feeNonStaffSortParm"], SearchText = ViewData["SearchText"] })
+        </th>
+        <th>
+            @Html.ActionLink("聯絡人", "Index", new { sortOrder = ViewData["contactSortParm"], SearchText = ViewData["SearchText"] })
+        </th>
+        <th>
+            @Html.ActionLink("聯絡電話", "Index", new { sortOrder = ViewData["contactTelSortParm"], SearchText = ViewData["SearchText"] })
+        </th>
+        <th>
+            @Html.ActionLink("聯絡地址", "Index", new { sortOrder = ViewData["describeSortParm"], SearchText = ViewData["SearchText"] })
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.subject)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.startDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.endDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.feeStaff)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.feeNonStaff)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contact)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contactTel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.describe)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {
+ 						id = item.id 
+ 						}) |
+            @Html.ActionLink("Details", "Details", new {
+ 						id = item.id 
+ 						}) |
+            @Html.ActionLink("Delete", "Delete", new {
+ 						id = item.id 
+ 						})
+        </td>
+    </tr>
+}
+
+</table>
+
+<table class="table">
+    <tr>
+        <td align="center">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewData["CurrentSort"], SearchText = ViewData["SearchText"] }))
+        </td>
+    </tr>
+</table>
+
+
+
+@Html.Partial("_ExportDataDialog")
+
+@section scripts
+{
+@* for Export file *@
+    <script src="~/Scripts/Excel-Export.js"></script>
+    <script src="~/Scripts/bootbox.js"></script>
+    <script src="~/Scripts/jquery.form.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var actionUrls = {
+            Export: '@Url.Action("Export", "calendar_detail")',
+            HasData: '@Url.Action("HasData", "calendar_detail")'
+        };
+        project.ZipCode.Initialize(actionUrls);
+    });
+</script>
+
+
+}
+
+ 

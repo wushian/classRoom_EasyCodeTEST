@@ -1,0 +1,8 @@
+﻿@using System.Drawing
+@model int
+@{
+    var color = Color.FromArgb(Model);
+    var rgb = string.Concat("#", color.R.ToString("X2"), color.G.ToString("X2"), color.B.ToString("X2"));
+}
+<span class="paint-color" style="background-color: @rgb; width: 20px;"></span>
+ 

@@ -1,0 +1,69 @@
+@model MyProject.Models.calendar_detail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>calendar_detail</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.subject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subject)
+        <dt>
+            @Html.DisplayNameFor(model => model.startDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.startDateTime)
+        <dt>
+            @Html.DisplayNameFor(model => model.endDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.endDateTime)
+        <dt>
+            @Html.DisplayNameFor(model => model.feeStaff)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.feeStaff)
+        <dt>
+            @Html.DisplayNameFor(model => model.feeNonStaff)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.feeNonStaff)
+        <dt>
+            @Html.DisplayNameFor(model => model.contact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contact)
+        <dt>
+            @Html.DisplayNameFor(model => model.contactTel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contactTel)
+        <dt>
+            @Html.DisplayNameFor(model => model.describe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.describe)
+    </dl>
+</div>
+<p>
+            @Html.ActionLink("Edit", "Edit", new {
+ 						id = Model.id 
+ 						}) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+ 

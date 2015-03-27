@@ -1,0 +1,48 @@
+@using System.Activities.Statements
+@using System.Reflection.Emit
+@model DateTime?
+@if (Model.HasValue)
+{
+    var dateDiff = DateTime.Now - Model.Value;
+    var days = dateDiff.Days;
+
+    String cls = null;
+
+
+    if (Model.Value.ToString("yyyy-MM-dd") == "2000-01-01")
+    {
+        <span class="label">TS¥D¾÷</span>
+    }
+
+    else
+    {
+        if (days == 0)
+        {
+            cls = "";
+        }
+        else if (days == 1)
+        {
+            cls = "label label-success";
+        }
+        else if (days == 2)
+        {
+            cls = "label label-info";
+        }
+        else if (days == 3)
+        {
+            cls = "label label-warning";
+        }
+        else
+        {
+            cls = "label label-danger";
+        }
+
+        <span class="@cls">@Model.Value.ToString("yyyy-MM-dd")</span>
+
+    }
+
+}
+
+
+
+ 

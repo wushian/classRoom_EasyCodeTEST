@@ -1,0 +1,29 @@
+ï»¿@using System.Reflection.Emit
+@model string
+@if (! string.IsNullOrEmpty(Model))
+{
+    String cls = null;
+
+    if (Model == "å¸³è?æ­?¸¸?ˆæ?" || Model.Contains("?‹å?å­˜å?,é©—è??å?"))
+    {
+        cls = "label label-info";
+    }
+    else if (Model == "å¸³è?å°šæœª?Ÿå?" || Model.Contains("ç®¡ç??¡èº«?†é?è­‰å¤±??))
+    {
+        cls = "label label-danger";
+    }
+    else if (Model == "ä»¥ç¶­è­·å¸³?Ÿç™»?? || Model.Contains("ç®¡ç??¡èº«?†é?è­‰æ???))
+    {
+        cls = "label label-success";
+    }
+    else
+    {
+        cls = "label label-warning";
+    }
+        
+
+    <span class="@cls">@Model</span>
+}
+
+
+ 

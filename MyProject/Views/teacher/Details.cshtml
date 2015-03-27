@@ -1,0 +1,87 @@
+@model MyProject.Models.teacher
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>teacher</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        <dt>
+            @Html.DisplayNameFor(model => model.gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gender)
+        <dt>
+            @Html.DisplayNameFor(model => model.createDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createDate)
+        <dt>
+            @Html.DisplayNameFor(model => model.birthDay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.birthDay)
+        <dt>
+            @Html.DisplayNameFor(model => model.address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        <dt>
+            @Html.DisplayNameFor(model => model.officeAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.officeAddress)
+        <dt>
+            @Html.DisplayNameFor(model => model.telPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telPhone)
+        <dt>
+            @Html.DisplayNameFor(model => model.cellPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cellPhone)
+        <dt>
+            @Html.DisplayNameFor(model => model.job)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job)
+        <dt>
+            @Html.DisplayNameFor(model => model.ability)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ability)
+        <dt>
+            @Html.DisplayNameFor(model => model.educational)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.educational)
+    </dl>
+</div>
+<p>
+            @Html.ActionLink("Edit", "Edit", new {
+ 						id = Model.id 
+ 						}) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+ 

@@ -1,0 +1,11 @@
+﻿@using System.Drawing
+@model int
+@{
+    var color = Color.FromArgb(Model);
+    var rgb = string.Concat("#", color.R.ToString("X2"), color.G.ToString("X2"), color.B.ToString("X2"));
+}
+<div class="color-picker" data-color="@rgb">
+    @Html.Hidden("", Model, new { @class = "color-picker" })
+    <span class="paint-color" style="background-color: @rgb;"></span>
+</div>
+ 

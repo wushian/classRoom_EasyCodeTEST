@@ -1,0 +1,27 @@
+﻿@using System.Reflection.Emit
+@model DateTime?
+@if (Model.HasValue)
+{
+    var dateDiff = Model.Value - DateTime.Now;
+    var days = dateDiff.Days;
+
+    String cls = null;
+
+    if (days <= 30)
+    {
+        cls = "label label-danger";
+    }
+    else if (days > 30 && days < 60)
+    {
+        cls = "label label-warning";
+    }
+    else
+    {
+        cls = "label label-info";
+    }
+
+    <span class="@cls">@Model.Value.ToString("yyyy-MM-dd")</span>
+}
+
+
+ 

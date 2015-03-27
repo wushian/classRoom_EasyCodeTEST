@@ -1,0 +1,51 @@
+@model MyProject.Models.QuestionAnser
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>QuestionAnser</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cat1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cat1)
+        <dt>
+            @Html.DisplayNameFor(model => model.cat2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cat2)
+        <dt>
+            @Html.DisplayNameFor(model => model.pic1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pic1)
+        <dt>
+            @Html.DisplayNameFor(model => model.pic2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pic2)
+        <dt>
+            @Html.DisplayNameFor(model => model.describe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.describe)
+    </dl>
+</div>
+<p>
+            @Html.ActionLink("Edit", "Edit", new {
+ 						id = Model.id 
+ 						}) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+ 
